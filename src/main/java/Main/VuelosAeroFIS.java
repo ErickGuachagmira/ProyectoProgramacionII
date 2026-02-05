@@ -1,13 +1,13 @@
 package Main;
 
-import ControladorAerolinea.ControladorUsuario;
-import VistaAerolinea.VistaUsuario;
+import ControladorAerolinea.ControladorDestino;
+import VistaAerolinea.VistaDestino;
 
 public class VuelosAeroFIS {
 
     public static void main(String[] args) {
-        VistaUsuario vistaUsuario = new VistaUsuario();
-        new ControladorUsuario(vistaUsuario);
-        vistaUsuario.setVisible(true);
+        VistaDestino vistaDestino = new VistaDestino();
+        new ControladorDestino(vistaDestino);
+        vistaDestino.setVisible(true);
     }
 }

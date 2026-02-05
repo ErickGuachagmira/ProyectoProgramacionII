@@ -9,7 +9,7 @@ public class ModelFacturacion {
     private double impuestoIVA;
     private double totalFinal;
     private String metodoPago;
-    private Date fechaEmision;
+    private Date fechaEmision; 
 
     public ModelFacturacion(){
         

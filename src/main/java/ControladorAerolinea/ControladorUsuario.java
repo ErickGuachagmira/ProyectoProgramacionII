@@ -4,6 +4,7 @@ import ModeloAerolinea.ModelReserva;
 import ModeloAerolinea.ModelUsuario;
 import ModeloAerolinea.ModeloSesion;
 import ModeloAerolinea.UsuarioDAO;
+import VistaAerolinea.VistaFacturacion;
 import VistaAerolinea.VistaReserva;
 import VistaAerolinea.VistaUsuario;
 import java.awt.event.ActionEvent;
@@ -20,12 +21,12 @@ public class ControladorUsuario implements ActionListener {
     
     public ControladorUsuario (VistaUsuario vista){
         this.vista = vista;
-        this.vista.btnReservar.addActionListener(this);
+        this.vista.btnFacturacion.addActionListener(this);
         this.dao = new UsuarioDAO();
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        if (e.getSource() == vista.btnReservar){
+        if (e.getSource() == vista.btnFacturacion){
             guardarUsuario();
         }
     }
@@ -59,13 +60,10 @@ public class ControladorUsuario implements ActionListener {
             ModeloSesion.usuarioActivo = nuevoUsuario;
             JOptionPane.showMessageDialog(vista, "Guardado con exito");
             limpiarCampos();
-            VistaReserva vistaReserva = new VistaReserva();
-            ModelReserva modeloReserva = new ModelReserva();
-            
-            new ControladorReserva(vistaReserva, modeloReserva);
+            VistaFacturacion vistaFacturacion = new VistaFacturacion();
+            new ControladorFacturacion(vistaFacturacion);
 
-            vistaReserva.setVisible(true);
-
+            vistaFacturacion.setVisible(true);
             vista.dispose();
         }else{
             JOptionPane.showMessageDialog(vista, "Error al guardar");

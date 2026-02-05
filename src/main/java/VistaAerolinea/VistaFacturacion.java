@@ -36,10 +36,9 @@ public class VistaFacturacion extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnFRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnCredito = new javax.swing.JButton();
-        btnDebito = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -62,19 +61,21 @@ public class VistaFacturacion extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtTarjeta = new javax.swing.JTextField();
         txtTitular = new javax.swing.JTextField();
-        btnMastercard = new javax.swing.JButton();
-        btnVisa = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
+        txtBeneficiario = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtTarjeta1 = new javax.swing.JTextField();
+        txtMMAA = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txtTarjeta2 = new javax.swing.JTextField();
+        txtCVC = new javax.swing.JTextField();
+        btnVisa = new javax.swing.JRadioButton();
+        btnMastercard = new javax.swing.JRadioButton();
         txtbase = new javax.swing.JTextField();
         txtIVA = new javax.swing.JTextField();
         txtfinal = new javax.swing.JTextField();
+        btnDebito = new javax.swing.JRadioButton();
+        btnCredito = new javax.swing.JRadioButton();
         Fondo = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -87,12 +88,22 @@ public class VistaFacturacion extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jLabel2.setText("Detalles de Facturación");
 
+        btnFRegresar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        btnFRegresar.setText("Regresar");
+        btnFRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(269, 269, 269)
+                .addGap(21, 21, 21)
+                .addComponent(btnFRegresar)
+                .addGap(156, 156, 156)
                 .addComponent(jLabel2)
                 .addContainerGap(379, Short.MAX_VALUE))
         );
@@ -100,7 +111,9 @@ public class VistaFacturacion extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnFRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -108,21 +121,21 @@ public class VistaFacturacion extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Num. Boleto", "Persona", "Num. Asiento", "Valor a pagar"
+                "Num. Boleto", "Persona", "Fecha", "Destino", "Tipo", "Num. Asiento", "Equipaje", "Valor a pagar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,21 +146,14 @@ public class VistaFacturacion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
-        panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 430, 143));
-
-        btnCredito.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnCredito.setText("Tarjeta Crédito");
-        panel.add(btnCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
-
-        btnDebito.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        btnDebito.setText("Tarjeta Débito");
-        panel.add(btnDebito, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
+        panel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 113, 540, 180));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jLabel3.setText("Detalles de pago");
-        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jLabel4.setText("Total Base:");
@@ -188,11 +194,11 @@ public class VistaFacturacion extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jLabel11.setText("Detalles de Reserva");
-        panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
+        panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jLabel12.setText("Detalles de Usuario");
-        panel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 63, -1, -1));
+        panel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         txtNombre.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         txtNombre.setEnabled(false);
@@ -229,19 +235,24 @@ public class VistaFacturacion extends javax.swing.JFrame {
 
         txtTarjeta.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
-        btnMastercard.setText("Mastercard");
-
-        btnVisa.setText("Visa");
-
         jLabel16.setText("Monto a pagar:");
 
         jLabel17.setText("Nombre beneficiario:");
 
-        jTextField3.setEnabled(false);
+        txtMonto.setEnabled(false);
 
         jLabel18.setText("MM/AA:");
 
         jLabel19.setText("CVC:");
+
+        btnVisa.setText("Visa");
+        btnVisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaActionPerformed(evt);
+            }
+        });
+
+        btnMastercard.setText("Mastercard");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,70 +270,88 @@ public class VistaFacturacion extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtTarjeta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVisa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
+                        .addComponent(txtMMAA, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVisa))
+                    .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtTarjeta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
-                                .addComponent(btnMastercard))
-                            .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(42, Short.MAX_VALUE))))
+                        .addComponent(txtCVC, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMastercard))
+                    .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCVC, txtMMAA});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTarjeta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnVisa)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(txtTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtMMAA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVisa))))
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(txtTarjeta2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMastercard)))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCVC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMastercard))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 420, 210));
+
+        txtbase.setEnabled(false);
         panel.add(txtbase, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, -1));
+
+        txtIVA.setEnabled(false);
         panel.add(txtIVA, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 120, -1));
+
+        txtfinal.setEnabled(false);
         panel.add(txtfinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 120, -1));
+
+        btnDebito.setText("Tarjeta Débito");
+        btnDebito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDebitoActionPerformed(evt);
+            }
+        });
+        panel.add(btnDebito, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
+
+        btnCredito.setText("Tarjeta Crédito");
+        btnCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditoActionPerformed(evt);
+            }
+        });
+        panel.add(btnCredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
         panel.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 790, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,6 +380,22 @@ public class VistaFacturacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
 
+    private void btnFRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFRegresarActionPerformed
+
+    private void btnVisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVisaActionPerformed
+
+    private void btnDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDebitoActionPerformed
+
+    private void btnCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreditoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -377,12 +422,13 @@ public class VistaFacturacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fondo;
-    private javax.swing.JButton btnCredito;
-    private javax.swing.JButton btnDebito;
+    public javax.swing.JLabel Fondo;
+    public javax.swing.JRadioButton btnCredito;
+    public javax.swing.JRadioButton btnDebito;
+    private javax.swing.JButton btnFRegresar;
     public javax.swing.JButton btnFinalizar;
-    private javax.swing.JButton btnMastercard;
-    private javax.swing.JButton btnVisa;
+    public javax.swing.JRadioButton btnMastercard;
+    public javax.swing.JRadioButton btnVisa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -406,20 +452,20 @@ public class VistaFacturacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel panel;
     public javax.swing.JTextField txtApellido;
+    public javax.swing.JTextField txtBeneficiario;
+    public javax.swing.JTextField txtCVC;
     public javax.swing.JTextField txtCedula;
     public javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtIVA;
+    public javax.swing.JTextField txtIVA;
+    public javax.swing.JTextField txtMMAA;
+    public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTarjeta;
-    private javax.swing.JTextField txtTarjeta1;
-    private javax.swing.JTextField txtTarjeta2;
+    public javax.swing.JTextField txtTarjeta;
     public javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTitular;
-    private javax.swing.JTextField txtbase;
-    private javax.swing.JTextField txtfinal;
+    public javax.swing.JTextField txtTitular;
+    public javax.swing.JTextField txtbase;
+    public javax.swing.JTextField txtfinal;
     // End of variables declaration//GEN-END:variables
 }

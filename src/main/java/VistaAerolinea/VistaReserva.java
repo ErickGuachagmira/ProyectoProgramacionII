@@ -70,8 +70,6 @@ public class VistaReserva extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
         btnPrem = new javax.swing.JRadioButton();
         btnEcono = new javax.swing.JRadioButton();
@@ -86,9 +84,14 @@ public class VistaReserva extends javax.swing.JFrame {
         btnBebe = new javax.swing.JRadioButton();
         fondo1 = new javax.swing.JLabel();
         btnAdulto = new javax.swing.JRadioButton();
+        btnRRegresar = new javax.swing.JButton();
         BoletosContenedor = new javax.swing.JPanel();
-        btnFormP1 = new javax.swing.JButton();
+        btnUsuario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        dtvuelta = new com.toedter.calendar.JDateChooser();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -253,27 +256,19 @@ public class VistaReserva extends javax.swing.JFrame {
 
         tblVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Pasajero", "Fecha", "Destino", "Tipo", "Equipaje", "Title 6"
+                "Fecha", "Destino"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(tblVuelos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, 200));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, 200));
 
         btnAgregar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
         btnAgregar.setText("Agregar Boleto");
@@ -299,10 +294,6 @@ public class VistaReserva extends javax.swing.JFrame {
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel12.setText("Equipaje");
-
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
-        jLabel14.setText("Fecha");
 
         jButton3.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         jButton3.setText("Agregar");
@@ -373,59 +364,56 @@ public class VistaReserva extends javax.swing.JFrame {
             }
         });
 
+        btnRRegresar.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        btnRRegresar.setText("Regresar");
+        btnRRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
+                .addComponent(jLabel9)
+                .addGap(133, 133, 133)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9))
-                .addGap(52, 52, 52)
+                    .addComponent(jLabel10)
+                    .addComponent(btnIda)
+                    .addComponent(btnIdayVuelta))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIda)
-                            .addComponent(btnIdayVuelta))
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEcono)
-                            .addComponent(btnPrem))))
+                    .addComponent(jLabel11)
+                    .addComponent(btnEcono)
+                    .addComponent(btnPrem))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addGap(53, 53, 53))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAM)
-                                            .addComponent(btnAdulto))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnNiño)
-                                            .addComponent(btnBebe))))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(53, 53, 53))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBolso)
                             .addComponent(btnMaleta))
-                        .addContainerGap())))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAM)
+                                    .addComponent(btnAdulto))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnNiño)
+                                    .addComponent(btnBebe))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnRRegresar))
+                            .addComponent(jLabel13))
+                        .addGap(82, 82, 82))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(fondo1, javax.swing.GroupLayout.PREFERRED_SIZE, 1020, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -434,13 +422,9 @@ public class VistaReserva extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -449,24 +433,34 @@ public class VistaReserva extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIda)
-                            .addComponent(btnPrem)
-                            .addComponent(btnBolso)
-                            .addComponent(btnAM)
-                            .addComponent(btnNiño))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIdayVuelta)
-                            .addComponent(btnEcono)
-                            .addComponent(btnMaleta)
-                            .addComponent(btnAdulto)
-                            .addComponent(btnBebe))))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnIda)
+                                        .addComponent(btnNiño))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnIdayVuelta)
+                                        .addComponent(btnBebe)))
+                                .addComponent(btnRRegresar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(btnPrem)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnEcono)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addComponent(btnBolso)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMaleta))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addComponent(btnAM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAdulto)))))
                 .addGap(189, 189, 189)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fondo1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 100));
@@ -487,25 +481,37 @@ public class VistaReserva extends javax.swing.JFrame {
 
         jPanel1.add(BoletosContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 423, 433));
 
-        btnFormP1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        btnFormP1.setText("Forma de pago");
-        btnFormP1.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuario.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        btnUsuario.setText("Informacion de Usuario");
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFormP1ActionPerformed(evt);
+                btnUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFormP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 490, 150, 36));
+        jPanel1.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 490, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("Vuelos registrados");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel14.setText("Fecha Ida");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 113, -1));
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jLabel15.setText("Fecha Vuelta");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 130, -1, -1));
+        jPanel1.add(dtvuelta, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 113, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
+                .addGap(0, 16, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -536,9 +542,9 @@ public class VistaReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIdaActionPerformed
 
-    private void btnFormP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFormP1ActionPerformed
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnFormP1ActionPerformed
+    }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAMActionPerformed
         // TODO add your handling code here:
@@ -555,6 +561,10 @@ public class VistaReserva extends javax.swing.JFrame {
     private void btnBebeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBebeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBebeActionPerformed
+
+    private void btnRRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -590,12 +600,14 @@ public class VistaReserva extends javax.swing.JFrame {
     public javax.swing.JRadioButton btnBebe;
     public javax.swing.JRadioButton btnBolso;
     public javax.swing.JRadioButton btnEcono;
-    public javax.swing.JButton btnFormP1;
     public javax.swing.JRadioButton btnIda;
     public javax.swing.JRadioButton btnIdayVuelta;
     public javax.swing.JRadioButton btnMaleta;
     public javax.swing.JRadioButton btnNiño;
     public javax.swing.JRadioButton btnPrem;
+    private javax.swing.JButton btnRRegresar;
+    public javax.swing.JButton btnUsuario;
+    public com.toedter.calendar.JDateChooser dtvuelta;
     private javax.swing.JLabel fondo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -612,6 +624,7 @@ public class VistaReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

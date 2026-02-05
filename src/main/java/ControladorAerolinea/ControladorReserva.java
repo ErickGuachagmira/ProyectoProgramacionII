@@ -1,25 +1,26 @@
 package ControladorAerolinea;
 
+import ModeloAerolinea.ModelVuelo;
+import ModeloAerolinea.RepositorioVuelos;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import ControladorAerolinea.ControladorFacturacion;
 import ModeloAerolinea.ModelEstadoAsientos;
 import ModeloAerolinea.ModelReserva;
 import VistaAerolinea.VistaAsientosEconomicos;
 import VistaAerolinea.VistaAsientosPremium;
-import VistaAerolinea.VistaFacturacion;
 import VistaAerolinea.VistaReserva;
+import VistaAerolinea.VistaUsuario;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.DefaultTableModel;
 
 public class ControladorReserva implements ActionListener {
@@ -30,8 +31,6 @@ public class ControladorReserva implements ActionListener {
     private VistaAsientosEconomicos panelEconomico;
     private VistaAsientosPremium panelPremium;
     
-    
-    
     public ControladorReserva(VistaReserva vista, ModelReserva modelo){
         this.vista = vista;
         this.modelo = modelo;
@@ -41,7 +40,7 @@ public class ControladorReserva implements ActionListener {
         this.vista.btnPrem.addActionListener(this);
         this.vista.btnEcono.addActionListener(this);
         this.vista.btnAgregar.addActionListener(this);
-        this.vista.btnFormP1.addActionListener(this);
+        this.vista.btnUsuario.addActionListener(this);
         
         panelEconomico = new VistaAsientosEconomicos();
         panelPremium = new VistaAsientosPremium();
@@ -52,7 +51,6 @@ public class ControladorReserva implements ActionListener {
         
         inicializarTabla();
     }
-    //codigo de contenedor de variable
     private void agruparBotones() {
         ButtonGroup grupoTrayecto = new ButtonGroup();
         grupoTrayecto.add(vista.btnIda);
@@ -84,8 +82,8 @@ public class ControladorReserva implements ActionListener {
             if (validarYGuardar()) {
                 agregarBoletoATabla();
             }
-        } else if (e.getSource() == vista.btnFormP1) {
-            irAFacturacion();
+        } else if (e.getSource() == vista.btnUsuario) {
+            irAInformacionUsuario();
             }
         }
     
@@ -101,11 +99,9 @@ public class ControladorReserva implements ActionListener {
     public void mostrarSeccionPremium() {
     cambiarPanelIzquierdo(panelPremium);
     }
-
     public void mostrarSeccionEconomica() {
     cambiarPanelIzquierdo(panelEconomico);
     }
-    
     private void gestionarBotonesAsiento(JPanel panel, String tipoClase) {
     recorrerComponentes(panel, tipoClase);
 }
@@ -117,13 +113,10 @@ private void recorrerComponentes(Component comp, String tipoClase) {
 
         String name = boton.getName();
 
-        // solo botones asiento: btnPA1, btnEA2, etc.
         if (name == null || !name.matches("[PE][A-Z][0-9]+")) return;
             String nombreAsiento = name;
 
-
-        // ocupado → bloqueado
-        if (ModelEstadoAsientos.estaOcupado(nombreAsiento, tipoClase)) {
+            if (ModelEstadoAsientos.estaOcupado(nombreAsiento, tipoClase)) {
             boton.setEnabled(false);
             return;
         }
@@ -135,22 +128,15 @@ private void recorrerComponentes(Component comp, String tipoClase) {
         }
 
         boton.addActionListener(e -> {
-
-            // liberar selección anterior
             if (btnAsientoSeleccionado != null) {
                 btnAsientoSeleccionado.setEnabled(true);
             }
-
-            // seleccionar este asiento
             boton.setEnabled(false);
             btnAsientoSeleccionado = boton;
             asientoSeleccionado = nombreAsiento;
 
-            System.out.println("Asiento seleccionado: " + asientoSeleccionado);
         });
     }
-
-    // si es contenedor, seguir bajando
     if (comp instanceof Container) {
         for (Component hijo : ((Container) comp).getComponents()) {
             recorrerComponentes(hijo, tipoClase);
@@ -158,8 +144,6 @@ private void recorrerComponentes(Component comp, String tipoClase) {
     }
 }
 
-
-    
     private void agregarBoletoATabla() {
 
     DefaultTableModel model = (DefaultTableModel) vista.tblVuelos.getModel();
@@ -173,19 +157,16 @@ private void recorrerComponentes(Component comp, String tipoClase) {
     String clase = vista.btnPrem.isSelected() ? "Premium" : "Económico";
     String tipoClase = vista.btnPrem.isSelected() ? "Premium" : "Economico";
 
-    // 👉 agregar a tabla
     model.addRow(new Object[]{
-        pasajero,
-        vista.jDateChooser2.getDate(),
-        "Destino",   // aquí luego pones el real
-        clase + " (" + asientoSeleccionado + ")",
-        modelo.getTipoEquipaje()
-    });
+    pasajero,
+    vista.jDateChooser2.getDate(),
+    modelo.getDestino(),
+    clase + " (" + asientoSeleccionado + ")",
+    modelo.getTipoEquipaje()
+});
 
-    // 👉 marcar asiento como ocupado + guardar en archivo
     ModelEstadoAsientos.ocuparAsiento(asientoSeleccionado, tipoClase);
 
-    // 👉 limpiar selección
     asientoSeleccionado = null;
     btnAsientoSeleccionado = null;
 
@@ -194,14 +175,12 @@ private void recorrerComponentes(Component comp, String tipoClase) {
     
     private boolean validarYGuardar() {
         System.out.println("Asiento seleccionado: " + asientoSeleccionado);
-        // 1. Validar Fecha
         Date fecha = vista.jDateChooser2.getDate();
         if (fecha == null) {
             JOptionPane.showMessageDialog(vista, "Seleccione una fecha de vuelo.");
             return false;
         }
 
-    // 2. Definir Trayecto
         String trayecto = "";
         if (vista.btnIda.isSelected()) {
             trayecto = "Ida";
@@ -212,7 +191,6 @@ private void recorrerComponentes(Component comp, String tipoClase) {
             return false;
         }
 
-        // 3. Definir Clase
         String clase = "";
         if (vista.btnPrem.isSelected()) {
             clase = "Premium";
@@ -235,7 +213,6 @@ private void recorrerComponentes(Component comp, String tipoClase) {
             return false;
         }
         
-        // 4. Definir Equipaje
         String equipaje = "";
         if (vista.btnBolso.isSelected()) {
             equipaje = "Bolso de Mano";
@@ -252,7 +229,6 @@ private void recorrerComponentes(Component comp, String tipoClase) {
             return false;
         }
 
-        // 5. Guardar en el Modelo (Corrigiendo las líneas rojas de tus setters)
         modelo.setFechaVuelo(fecha);
         modelo.setTipoTrayecto(trayecto);
         modelo.setClaseVuelo(clase);
@@ -262,15 +238,15 @@ private void recorrerComponentes(Component comp, String tipoClase) {
         return true;
     
     }
-    private void irAFacturacion() {
+    private void irAInformacionUsuario() {
         if (vista.tblVuelos.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(vista, "Debe agregar al menos un boleto a la lista antes de pagar.");
+            JOptionPane.showMessageDialog(vista, 
+                    "Debe agregar al menos un boleto a la lista antes de pagar.");
             return;
         }
-        VistaFacturacion vistaFacturacion = new VistaFacturacion();
-        new ControladorFacturacion(vistaFacturacion);
-        vistaFacturacion.setVisible(true);
+        VistaUsuario vistaUsuario = new VistaUsuario();
+        new ControladorUsuario(vistaUsuario);
+        vistaUsuario.setVisible(true);
         vista.dispose();
     }
 }
-
