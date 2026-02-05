@@ -1,9 +1,9 @@
-package com.mycompany.proyectoprogramacion;
+package Main;
 
 import ControladorAerolinea.ControladorUsuario;
 import VistaAerolinea.VistaUsuario;
 
-public class ProyectoProgramacion {
+public class VuelosAeroFIS {
 
     public static void main(String[] args) {
         VistaUsuario vistaUsuario = new VistaUsuario();

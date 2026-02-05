@@ -1,6 +1,5 @@
 package VistaAerolinea;
     
-import com.mycompany.proyectoprogramacion.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;

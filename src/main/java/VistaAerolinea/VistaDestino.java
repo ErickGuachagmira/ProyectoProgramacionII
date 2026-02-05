@@ -33,12 +33,12 @@ public class VistaDestino extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        btnQuito = new javax.swing.JButton();
+        btnManta = new javax.swing.JButton();
+        btnGuayaquil = new javax.swing.JButton();
+        btnGalapagos = new javax.swing.JButton();
+        btnCuenca = new javax.swing.JButton();
+        ContenedorDestinos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
@@ -80,35 +80,35 @@ public class VistaDestino extends javax.swing.JFrame {
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, -1));
 
-        jButton7.setText("Quito");
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 181, 156));
+        btnQuito.setText("Quito");
+        jPanel4.add(btnQuito, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 181, 156));
 
-        jButton8.setText("Manta");
-        jPanel4.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 181, 156));
+        btnManta.setText("Manta");
+        jPanel4.add(btnManta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 181, 156));
 
-        jButton9.setText("Guayaquil");
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 181, 156));
+        btnGuayaquil.setText("Guayaquil");
+        jPanel4.add(btnGuayaquil, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 181, 156));
 
-        jButton10.setText("Galapagos");
-        jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 181, 156));
+        btnGalapagos.setText("Galapagos");
+        jPanel4.add(btnGalapagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 181, 156));
 
-        jButton11.setText("Cuenca");
-        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 130, 181, 156));
+        btnCuenca.setText("Cuenca");
+        jPanel4.add(btnCuenca, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 130, 181, 156));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        ContenedorDestinos.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ContenedorDestinosLayout = new javax.swing.GroupLayout(ContenedorDestinos);
+        ContenedorDestinos.setLayout(ContenedorDestinosLayout);
+        ContenedorDestinosLayout.setHorizontalGroup(
+            ContenedorDestinosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 940, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ContenedorDestinosLayout.setVerticalGroup(
+            ContenedorDestinosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 280, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 940, 280));
+        jPanel4.add(ContenedorDestinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 940, 280));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabel2.setText("Origen");
@@ -161,19 +161,19 @@ public class VistaDestino extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel ContenedorDestinos;
+    public javax.swing.JButton btnCuenca;
+    public javax.swing.JButton btnGalapagos;
+    public javax.swing.JButton btnGuayaquil;
+    public javax.swing.JButton btnManta;
+    public javax.swing.JButton btnQuito;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
