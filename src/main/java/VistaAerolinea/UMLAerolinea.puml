@@ -1,0 +1,102 @@
+@startuml
+
+class Usuario {
+- User: String
+- Correo: String
+- Contrasena: String
+}
+
+class Vuelo {
+- CodigoVuelo: String
+- Origen: String
+- Destino: String
+- FechaIda: Date
+- FechaRegreso: Date
+- Avion: Avion
+}
+
+class Avion {
+- Identificacion: String
+- AsientoPremium : Asiento[4][2]
+- AsientoEconomico : Asiento[4][3]
+ 
+}
+
+class Boleto {
+- Pasajero: Pasajero
+- CodigoBoleto: String
+- Clase: ClaseVuelo
+- Asiento: Asiento
+- Vuelo: Vuelo
+- PrecioBase: double
++ PrecioTotal(): double
+}
+
+class Pasajero {
+- Nombre: String
+- Apellido: String
+- NumDocumento: String
+- Tipo: TipoPasajero
+- FechaNacimiento: Date
+- NumCelular: String
+- TipoDocumento
+}
+
+class Asiento {
+- Fila: int
+- Columna: int
+- Codigo: String
+- Disponible: boolean
+}
+
+enum ClaseVuelo {
+  ECONOMICA (1.0)
+  PREMIUM (1.5)
+- Factor: double
++ GetFactor(): double
+}
+
+enum TipoPasajero {
+  ADULTOS (1.0)
+  NINOS (0.7)
+  ADULTOMAYOR (0.5)
+  DISCAPACITADO (0.5)
+  BEBES (0.1)
+- Factor: double
++ GetFactor(): double
+}
+
+class VentaBoleto {
+  + comprarBoleto(u : Usuario, v : Vuelo, p : Pasajero, c : ClaseVuelo) : Boleto
+}
+
+class Equipaje {
+- Tipo: TipoEquipaje
+- PesoKg: double
+- PesoPermitido: double
+- CostoExtra: double
+}
+
+enum TipoEquipaje {
+ESTANDAR (0.0)
+EXTRA (25.0)
+- Factor: double
++ GetFactor(): double
+}
+
+VentaBoleto "genera" --> Boleto
+VentaBoleto --> Vuelo
+VentaBoleto --> Pasajero 
+Usuario "usa" --> VentaBoleto
+Vuelo "usa" o-- Avion
+Avion "1" *-- "20" Asiento: contiene
+Pasajero --> TipoPasajero 
+Pasajero "1"--> "1" Boleto:corresponde
+Boleto "1" -- "0.." Equipaje: incluye
+Boleto --> ClaseVuelo
+TipoEquipaje --> Equipaje
+Vuelo "1" --> "0..*" Boleto: tiene
+
+
+
+@enduml
